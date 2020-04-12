@@ -1,0 +1,19 @@
+stages:
+  - prepare
+  - plan
+  - apply
+  - deploy
+  - destroy
+
+.terraform:common:
+  image:
+    name: hashicorp/terraform:0.12.20
+    entrypoint: [""]
+  before_script:
+    - terraform init ./terraform
+
+plan:terraform:
+  extends: .terraform:common
+  stage: plan
+  script:
+    - terraform plan ./terraform
