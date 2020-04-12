@@ -4,7 +4,7 @@
 
 ## Требования
 
-1. Сервисный аккаунт с правами editor
+1. Сервисный аккаунт с правами editor на default folder и viewer на cloud
 2. Переменные CI/CD:
    1. Cloud ID
    2. Folder ID

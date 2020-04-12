@@ -7,6 +7,9 @@ resource "local_file" "body" {
   )
   filename        = "${path.module}/artifacts/body.json"
   file_permission = "644"
+  depends_on = [
+      yandex_storage_object.sample
+  ]
 }
 
 resource "local_file" "send_recognition_request" {
@@ -18,6 +21,9 @@ resource "local_file" "send_recognition_request" {
   )
   filename        = "${path.module}/artifacts/send_recognition_request.sh"
   file_permission = "755"
+  depends_on = [
+      yandex_storage_object.sample
+  ]
 }
 
 resource "local_file" "get_operation_status" {
@@ -29,4 +35,7 @@ resource "local_file" "get_operation_status" {
   )
   filename        = "${path.module}/artifacts/get_operation_status.sh"
   file_permission = "755"
+  depends_on = [
+      yandex_storage_object.sample
+  ]
 }
