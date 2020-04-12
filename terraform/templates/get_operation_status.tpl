@@ -8,5 +8,4 @@ while [ $response_status = "false" ]; do
     response=$(curl -X GET -H "Authorization: Api-Key $API_KEY" $uri)
     response_status=$(echo $response | jq -r ".done")
 done
-text=$($response | jq -r '[.response.chunks[].alternatives[].text]')
-echo $text >> transcript.json
+echo $response | jq -r '[.response.chunks[].alternatives[].text]' >> transcript.json
