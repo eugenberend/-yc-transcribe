@@ -6,6 +6,7 @@ resource "yandex_iam_service_account" "sa" {
 }
 
 resource "yandex_resourcemanager_folder_iam_binding" "editor" {
+  folder_id = yandex_resourcemanager_folder.default_folder.id
   role      = "editor"
 
   members = [
