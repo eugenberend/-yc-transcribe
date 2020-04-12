@@ -1,16 +1,12 @@
 provider "yandex" {}
 
-data "yandex_resourcemanager_folder" "default_folder" {
-  name     = "default"
-}
-
 resource "yandex_iam_service_account" "sa" {
   name        = "svc-transcribe-bucket-editor"
   description = "service account to manage speech-to-text"
 }
 
 resource "yandex_resourcemanager_folder_iam_binding" "editor" {
-  folder_id = yandex_resourcemanager_folder.default_folder.id
+  folder_id = data.yandex_resourcemanager_folder.default_folder.id
   role      = "editor"
 
   members = [
