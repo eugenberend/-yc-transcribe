@@ -21,7 +21,7 @@ plan:terraform:
 apply:terraform:
   extends: .terraform:common
   stage: apply
-  when: manual
+  when: on_success
   artifacts:
     expire_in: 60 min
     paths:
