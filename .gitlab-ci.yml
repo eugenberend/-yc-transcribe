@@ -34,6 +34,7 @@ apply:terraform:
 send request:
   stage: send request
   script:
+    - sudo apt-get install jq -y
     - cd artifacts/
     - ./send_recognition_request.sh
   artifacts:
@@ -44,6 +45,7 @@ send request:
 wait for job:
   stage: wait for job
   script:
+    - sudo apt-get install jq -y
     - cd artifacts/
     - source job_id
     - ./get_operation_status.sh
