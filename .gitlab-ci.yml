@@ -17,3 +17,29 @@ plan:terraform:
   stage: plan
   script:
     - terraform plan ./terraform
+
+apply:terraform:
+  extends: .terraform:common
+  stage: apply
+  when: manual
+  artifacts:
+    expire_in: 60 min
+    paths:
+      - artifacts/*
+  script:
+    - terraform apply -auto-approve ./terraform
+  allow_failure: false
+
+destroy_on_success:terraform:
+  extends: .terraform:common
+  stage: destroy
+  when: manual
+  script:
+    - terraform destroy -auto-approve ./terraform
+
+destroy_on_failure:terraform:
+  extends: .terraform:common
+  stage: destroy
+  when: on_failure
+  script:
+    - terraform destroy -auto-approve ./terraform
