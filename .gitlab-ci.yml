@@ -2,7 +2,8 @@ stages:
   - prepare
   - plan
   - apply
-  - deploy
+  - send request
+  - wait for job
   - destroy
 
 .terraform:common:
@@ -29,6 +30,27 @@ apply:terraform:
   script:
     - terraform apply -auto-approve ./terraform
   allow_failure: false
+
+send request:
+  stage: send request
+  script:
+    - cd artifacts/
+    - ./send_recognition_request.sh
+  artifacts:
+    expire_in: 60 min
+    paths:
+      - artifacts/job_id
+
+wait for job:
+  stage: wait for job
+  script:
+    - cd artifacts/
+    - source job_id
+    - ./get_operation_status.sh
+  artifacts:
+    expire_in: 60 min
+    paths:
+      - artifacts/transcript.json
 
 destroy_on_success:terraform:
   extends: .terraform:common
