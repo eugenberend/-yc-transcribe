@@ -12,3 +12,5 @@
    4. IAM static access key (access_key:key_id) для сервисного аккаунта
    5. IAM static secret access key (secret) для сервисного аккаунта
 3. Бакет для tfstate. Доступ нужно ограничить сервисным аккаунтом.
+4. Бранч - только не master.
+5. Файл в формате opus в директории input. Будет добавлена конвертация из mp3.
